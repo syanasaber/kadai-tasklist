@@ -2,12 +2,11 @@
 
 <ul>
     <% @tasks.each do |task| %>
-    <li><%= link_to task.id, task %><%= task.content %></li>
+    <li><%= link_to task.id, task %>:<%= task.status %> &gt; <%= task.content %></li>
     <% end %>
 </ul>
 
 <%= link_to '新規タスクの追加', new_task_path %>
-<%= link_to 'このタスクを削除する', @task, method: :delete, data: {confirm: '本当に削除してよろしいですか？'} %>
 
 <%# #indexでnilclassになった要因→コントローラーにて、モデル名_controller.rbに記載しないといけないコードをapplication_controllerに書いていた %>
 <%# ここでリンク先showに送るためには、task（モデル名単体系）出ないとだめ。　@taskではあかんかった %>

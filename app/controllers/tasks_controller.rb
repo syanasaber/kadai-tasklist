@@ -44,15 +44,16 @@ class TasksController < ApplicationController
         flash[:success] = 'タスクは正常に削除されました'
         redirect_to tasks_url
     end
+
+    private
+    
+    #strong parameter
+    def task_params
+        params.require(:task).permit(:content)
+    end
 end
 
 
-private
-
-#strong parameter
-def task_params
-    params.require(:task).permit(:content)
-end
 
 
 #task_params...は入力フォームに入れた内容をフィルターをかけて読み取る

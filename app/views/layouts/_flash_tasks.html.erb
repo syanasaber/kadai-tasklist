@@ -1,6 +1,6 @@
 <% flash.each do |task_type, task| %>
 
-<div>
+<div class="alert alert-<%= task_type %>">
     <%= task %>
 </div>
 
@@ -8,3 +8,4 @@
 
 <%# flashの構造はハッシュ。キーがsuccess:, 値が’メッセージ内容' %>
 <%# うち、上記では値のみを取り出して代入している %>
+

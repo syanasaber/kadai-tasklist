@@ -1,12 +1,33 @@
 <h1>タスク一覧</h1>
 
-<ul>
-    <% @tasks.each do |task| %>
-    <li><%= link_to task.id, task %>:<%= task.status %> &gt; <%= task.content %></li>
-    <% end %>
-</ul>
+<% if @tasks.any? %>
 
-<%= link_to '新規タスクの追加', new_task_path %>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>id</th>
+                <th>タイトル</th>
+                <th>メッセージ</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% @tasks.each do |task| %>
+            <tr>
+                <td><%= link_to task.id, task %></td>
+                <td><%= task.status %></td>
+                <td><%= task.content %></td>
+            </tr>
+            <% end %>
+        </tbody>
+    </table>
+    <div>
+        <%= paginate @tasks %>
+    </div>
+
+    <% end %>
+    
+    <%= link_to '新規タスクの登録', new_task_path, class: "btn btn-primary" %>
+
 
 <%# #indexでnilclassになった要因→コントローラーにて、モデル名_controller.rbに記載しないといけないコードをapplication_controllerに書いていた %>
 <%# ここでリンク先showに送るためには、task（モデル名単体系）出ないとだめ。　@taskではあかんかった %>

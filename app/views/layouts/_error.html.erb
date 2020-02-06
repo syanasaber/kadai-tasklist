@@ -1,0 +1,19 @@
+<!--バリデーションかかった時に、エラーメッセージ表記する定形コード-->
+<!-- パーシャルで app/users/new.html.erbに放り込む -->
+
+<% if model.errors.any? %>
+
+  <div id="error_explanation" class="alert alert-warning">
+    <ul class="mb-0">
+      
+    <% model.errors.full_messages.each do |message| %>
+    
+            <li>
+    <%= message %>
+    </li>
+          
+    <% end %>
+
+    </ul>
+  </div>
+<% end %>

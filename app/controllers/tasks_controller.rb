@@ -3,11 +3,10 @@ class TasksController < ApplicationController
     before_action :set_task, only: [:show, :edit, :update, :destroy]
     before_action :correct_user, only: [:destroy]
     
+    #before_actionあるからログイン判定する必要ない
     def index
-        if logged_in?
           @task = current_user.tasks.build
           @tasks = current_user.tasks.order(id: :desc).page(params[:page])    
-        end
     end
     
     def show
@@ -46,7 +45,7 @@ class TasksController < ApplicationController
         @task.destroy
         
         flash[:success] = 'タスクは正常に削除されました'
-        redirect_back(fallback_location: root_path) 
+        redirect_to root_url
     end
 
     private

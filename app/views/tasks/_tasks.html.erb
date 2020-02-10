@@ -5,8 +5,7 @@
 <% tasks.each do |task| %>
     
     <li class="media mb-3">
-        <img class="mr-2 rouded" src="<%= gravatar_url(task.user, { size: 50 }) %>" alt
-        ="">
+       <%= link_to task.id, task %>
         <div class="media-body">
             <div>
                 <span class="text-muted">posted at 

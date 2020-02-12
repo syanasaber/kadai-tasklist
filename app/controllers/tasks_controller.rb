@@ -1,9 +1,11 @@
 class TasksController < ApplicationController
     before_action :require_user_logged_in, only: [:index, :show, :edit, :new]
     before_action :set_task, only: [:update]
-    before_action :correct_user, only: [:show, :edit, :destroy]
+    before_action :correct_user, only: [:show, :edit, :update, :destroy]
     
     
+    #require_user_logged_inでは、新しく作る系と、一覧表示系をログインしたユーザーしか見れないようにする。
+    #correct_userでは、各ユーザーの登録したデータを、他人が参照・編集できないようにする。そのためそれに関わる、show,edit,update,destroyをアクセス制限する
     #before_actionあるからログイン判定する必要ない
     def index
         @tasks = current_user.tasks.order(id: :desc).page(params[:page])    
@@ -61,7 +63,7 @@ class TasksController < ApplicationController
     def correct_user
         @task = current_user.tasks.find_by(id: params[:id])
         unless @task
-         redirect_to login_url
+         redirect_to root_url
         end
     end
     
